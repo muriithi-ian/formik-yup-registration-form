@@ -41,8 +41,10 @@ const initialValues = {
     confirmPassword: '',
     phNumbers: ['']
 }
-const onSubmit = values => {
+const onSubmit = (values, props) => {
     console.log("Form data", values)
+    console.log("Submit props: ", props)
+    props.resetForm()
 }
 function RegistrationForm() {
     return (
@@ -54,7 +56,7 @@ function RegistrationForm() {
 
                 {
                     props => (
-                        <Form className="form" onSubmit={onSubmit}>
+                        <Form className="form">
                             <h1>Registration form</h1>
                             <div className="form_control">
                                 <label htmlFor="name">Name</label>
