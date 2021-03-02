@@ -4,24 +4,24 @@ import * as yup from 'yup'
 import './RegistrationForm.css'
 
 const validationSchema = yup.object({
-    // name: yup
-    //     .string('Enter full name')
-    //     .required('Required'),
-    // email: yup
-    //     .string('Enter email')
-    //     .email('Invalid format, use: name@mail.com')
-    //     .required('Required'),
-    // location: yup
-    //     .string('Enter your location'),
-    // password: yup
-    //     .string('Enter password with uppercase, lowercase, a number and a special character')
-    //     .min(8, 'Password should be of minimum 8 characters length')
-    //     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Must contain uppercase, lowercase, a number and special character")
-    //     .required("Required"),
-    // confirmPassword: yup
-    //     .string("Retype password")
-    //     .oneOf([yup.ref('password'), null], "Passwords do not match")
-    //     .required('Please confirm password'),
+    name: yup
+        .string('Enter full name')
+        .required('Required'),
+    email: yup
+        .string('Enter email')
+        .email('Invalid format, use: name@mail.com')
+        .required('Required'),
+    location: yup
+        .string('Enter your location'),
+    password: yup
+        .string('Enter password with uppercase, lowercase, a number and a special character')
+        .min(8, 'Password should be of minimum 8 characters length')
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Must contain uppercase, lowercase, a number and special character")
+        .required("Required"),
+    confirmPassword: yup
+        .string("Retype password")
+        .oneOf([yup.ref('password'), null], "Passwords do not match")
+        .required('Please confirm password'),
     phNumbers: yup
         .array()
         .required('Required')
@@ -137,13 +137,9 @@ function RegistrationForm() {
                                                 {
                                                     phNumbers.map((phNumber, index) => (
                                                         <div key={index}>
+                                                            <div className="error"> <ErrorMessage name={`phNumbers[${index}]`} /></div>
 
-                                                            {
-                                                                form.errors.phNumbers ? <div className="error"> {form.errors.phNumbers[index]}</div> : null
-                                                            }
-                                                            <input name={`phNumbers[${index}]`}
-                                                                onChange={form.handleChange}
-                                                            />
+                                                            <Field name={`phNumbers[${index}]`} />
                                                             <button type="button" onClick={() => remove(index)}>-</button>
                                                         </div>
                                                     ))
